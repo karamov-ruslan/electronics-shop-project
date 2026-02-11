@@ -24,7 +24,7 @@ def test_item():
     assert item.name == "012345"
     assert Item.string_to_number("123") == 123
     print(len(Item.all))
-    Item.instantiate_from_csv()
+    Item.instantiate_from_csv("src/items.csv")
     print(len(Item.all))
     assert Item.all[-1].name == "Клавиатура"
 

@@ -1,4 +1,3 @@
-from pathlib import Path
 import csv
 
 class Item:
@@ -47,17 +46,15 @@ class Item:
         self.price *= Item.pay_rate
 
     @classmethod
-    def instantiate_from_csv(cls):
-        current_dir = Path(__file__).parent
-        project_root = current_dir.parent
-        file_path = project_root / 'src' / 'items.csv'
-        with open(file_path, "r") as file:
+    def instantiate_from_csv(cls, file_path):
+        cls.all = []
+        with open("../" + file_path, "r") as file:
             for i in (csv.DictReader(file)):
                 cls(i.get("name"), i.get("price"), i.get("quantity"))
 
     @staticmethod
-    def string_to_number(str_number):
+    def string_to_number(str_number:str):
         try:
-            return int(str_number)
+            return int(float(str_number))
         except ValueError:
             print("Ошибка строка не является числом!")
